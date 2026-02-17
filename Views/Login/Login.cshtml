@@ -1,0 +1,73 @@
+@model IEnumerable<daftar.Models.Log>
+
+
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CodePen - Calm breeze login screen</title>
+    <link rel="stylesheet" href="/login/style.css">
+    <link rel="stylesheet" href="/lib/bootstrap/bootstrap.min.css">
+</head>
+<body>
+
+    @if (ViewBag.status == "null")
+    {
+        @*<button id="warning" hidden>Warning</button>*@
+        <div class="alert alert-warning" dir="rtl">
+            <strong>اخطار ! </strong>لطفا نام کاربری و رمزعبور خود را وارد کنید.
+        </div>
+    }
+    @if (ViewBag.status == "2")
+    {
+        @*<button id="warning" hidden>Warning</button>*@
+        <div class="alert alert-warning" dir="rtl">
+            <strong>اخطار ! </strong>مشکل در Api.
+        </div>
+    }
+    @if (ViewBag.status == "NotFound")
+    {
+        @*<button id="error" hidden>Error</button>*@
+        <div class="alert alert-danger" dir="rtl">
+            <strong>  خطا ! </strong> نام کاربری یا رمز عبور اشتباه است.
+        </div>
+    }
+    <!-- partial:index.partial.html -->
+    <div class="wrapper">
+        <div class="container">
+            <h1>خوش آمدید</h1>
+
+
+
+            <form action="~/Login/login" method="post" class="form">
+                <input id="user_name" name="user_name" type="text" placeholder="نام کاربری">
+                <input id="password" name="password" type="password" placeholder="کلمه عبور">
+                <button type="submit" @*id="login-button"*@>ورود</button>
+            </form>
+        </div>
+
+        <ul class="bg-bubbles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <!-- partial -->
+    <script src='/lib/jquery/dist/jquery.min.js'></script>
+    <script src="/login/script.js"></script>
+
+</body>
+</html>

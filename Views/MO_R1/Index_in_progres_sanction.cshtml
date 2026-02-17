@@ -1,0 +1,311 @@
+@model IEnumerable<daftar.Models.Sanction>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='~/be_offline/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/be_offline/reset.min.css">
+    <link rel="stylesheet" href="~/dashboard/style.css">
+
+
+
+
+</head>
+<body>
+    <!-- partial:index.partial.html -->
+    <div id="page_wrapper">
+        <div id="sidenav" class="sidenav">
+            <div class="sidenav_header">
+                <div class="logo_section">
+
+                    <h3>سامانه پیگیری مکاتبات</h3>
+                </div>
+
+                @*<a href="~/Letter/Create" class="sidenav_link ">
+            <i class='fa fa-folder'></i>
+            <h3>ایجاد پیگیری</h3>
+        </a>*@
+
+                <a href="~/MO_R1/Index" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3> نامه های اتمام مهلت</h3>
+                </a>
+
+                <a href="~/MO_R1/Index_in_progres" class="sidenav_link">
+                    <i class='fa fa-file'></i>
+                    <h3>نامه های درحال پیگیری</h3>
+                </a>
+                <a href="~/MO_R1/Index_send_H_B" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>ارجاعات به بازرسی </h3>
+                </a>
+                <a href="~/MO_R1/export?type=end" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>گزارش گیری نامه های خاتمه یافته </h3>
+                </a>
+
+                <a href="~/User/Index" class="sidenav_link">
+            <i class='fa fa-file'></i>
+            <h3>کاربران</h3>
+        </a>
+
+        <a href="~/User/Create" class="sidenav_link ">
+            <i class='fa fa-briefcase'></i>
+            <h3>ایجاد کاربر</h3>
+        </a>
+                <a href="~/MO_R1/Index_sanction" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3>مصوبات اتمام مهلت</h3>
+                </a>
+
+                <a href="~/MO_R1/Index_in_progres_sanction" class="sidenav_link active">
+                    <i class='fa fa-file'></i>
+                    <h3>مصوبات درحال پیگیری</h3>
+                </a>
+                <a href="~/MO_R1/Index_send_H_B_sanction" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>مصوبات ارجاعی به بازرسی </h3>
+                </a>
+                <a href="~/MO_R1/export_sanction?type=end" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>گزارش گیری مصوبات خاتمه یافته </h3>
+                </a>
+
+                <a href="~/Letter/export" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3>گزارش گیری کلی</h3>
+                </a>
+                <a href="~/Letter/export_sanction" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3> گزارش گیری کلی مصوبات</h3>
+                </a>
+            </div>
+
+            <div class="sidenav_footer">
+                <a href="~/Login/exit" class="sidenav_link">
+                    <i class='fa fa-rocket'></i>
+                    <h3>خروج  </h3>
+                </a>
+            </div>
+
+            @*<button id="nav_collapse_btn">
+                <i class='fa fas-chevrons-left'></i>
+            </button>*@
+        </div>
+
+
+        <main>
+            <header>
+                <div class="text">
+                    <h2 style="color:black;">مصوبات  در حال پیگیری </h2>
+                    <a type="button" class="btn btn-secondary btn-lg" href="~/MO_R1/export_sanction?type=in_progress">
+                        گرفتن خروجی
+                    </a>
+                    <p style="color:black;"></p>
+                </div>
+                <div>
+
+                </div>
+            </header>
+
+            <div class="list_div" style=" padding: 20px; border-radius: 25px;">
+
+                <input id="search" type="text" class="form-control" placeholder="جستجو....">
+                <br />
+                <table class="table table-sortable">
+                    <thead>
+                        <tr>
+                            <th>
+                                ردیف
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.serial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.title)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.meetingـnumber)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.date_create)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.date_send)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.place)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.day_reserve)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.count_followed)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.last_day_reserve)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.list_date_fllowed)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.letter_status)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.awnser_serial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.date_awnser)
+                            </th>
+                            <th></th>
+                            @*<th>شماره سریال پاسخ نامه</th>
+        <th>تاریخ پاسخ </th>
+
+        <th></th>*@
+
+                            @*<th></th>*@
+                        </tr>
+                    </thead>
+                    <tbody id="table">
+                        @{
+                            int i = 0;
+                        }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @{
+                                        i = i + 1;
+                                    }
+                                    @i
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.serial)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.meetingـnumber)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.date_create)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.date_send)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.place)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.day_reserve)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.count_followed)
+                                </td>
+                                <td>
+                                    @{ string p = "";}
+                                    @if (item.last_day_reserve != null)
+                                    {
+                                        foreach (string day in item.last_day_reserve)
+                                        {
+                                            p = day.ToString() + ",";
+                                            {@p;
+                                        }
+
+
+                                    }
+                                }
+                                </td>
+                                <td>
+                                    @{ string d = "";}
+                                    @if (item.list_date_fllowed != null)
+                                    {
+                                        foreach (string day in item.list_date_fllowed)
+                                        {
+                                            d = day.ToString() + ",";
+                                            {@d;
+                                        }
+
+
+                                    }
+                                }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.letter_status)
+                                </td>
+                                <form action="~/MO_R1/end_sanction" method="post" id="myForm" enctype="multipart/form-data">
+                                <td>
+                                    <input name="answer_serial" class="form-control" style="width:160px;" value="@item.awnser_serial" required />
+                                </td>
+                                <td>
+                                    @{ if (item.letter_status == "بررسی پاسخ")
+                                        {
+                                            <input name="date_awnser" class="form-control" style="width:120px;" type="text" maxlength="10" value="@item.date_awnser" required />
+                                        }
+                                        else
+                                        {
+                                            <input name="date_awnser" class="form-control" style="width:120px;" type="text" maxlength="10" value="@ViewBag.time" required />
+                                        }
+                                    }
+
+                                </td>
+                                <td>
+                                    <div style="padding-top:10px;" class="form-group">
+                                        <input name="id" value="@item.Id" hidden />
+                                        <button type="submit" value="خاتمه" class="btn btn-info"><i class='fa fa-check'></i></button>
+                                    </div>
+                                </td>
+                                </form>
+
+
+                                @*<form action="~/Letter/end_letter" method="post" id="myForm" enctype="multipart/form-data">
+        <td>
+            <input name="answer_serial" class="form-control" style="width:160px;" required/>
+        </td>
+            <td>
+            <input name="date_awnser" class="form-control" style="width:160px;" required />
+        </td>
+        <td>
+            <div style="padding-top:10px;" class="form-group">
+                <input name="id" value="@item.Id" hidden />
+                <button type="submit" value="خاتمه" class="btn btn-info"><i class='fa fa-check'></i></button>
+            </div>
+        </td>
+        </form>*@
+
+
+
+
+                                <!--<td>
+    <div style="width:40px;">-->
+                                @*<a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@item.Id"><i class='fa fa-edit'></i></a> |*@
+                                @*<a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                                @*<a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id"><i class='fa fa-trash'></i></a>*@
+                                <!--</div>
+    </td>-->
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+</div>
+
+    </main>
+
+
+    </div>
+    <!-- partial -->
+    <script src='~/be_offline/boxicons.js'></script>
+    <script src='~/be_offline/4.1.2-chart.min.js'></script>
+    <script src='~/be_offline/3.5.1-chart.min.js'></script>
+    <script src="~/dashboard/script.js"></script>
+
+
+
+</body>
+</html>

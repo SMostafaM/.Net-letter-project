@@ -1,0 +1,255 @@
+@model daftar.Models.User
+
+@{
+    ViewData["Title"] = "Edit";
+    
+}
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='~/be_offline/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/be_offline/reset.min.css">
+    <link rel="stylesheet" href="~/dashboard/style.css">
+
+</head>
+<body>
+    <!-- partial:index.partial.html -->
+    <div id="page_wrapper">
+        <div id="sidenav" class="sidenav">
+            @if (ViewBag.user_type == "admin")
+            {
+                <div class="sidenav_header">
+                    <div class="logo_section">
+
+                        <h3>سامانه پیگیری مکاتبات</h3>
+                    </div>
+
+                    <a href="~/Letter/Create" class="sidenav_link ">
+                        <i class='fa fa-book'></i>
+                        <h3>ایجاد پیگیری</h3>
+                    </a>
+
+                    <a href="~/Letter/Index" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3> نامه های اتمام مهلت</h3>
+                    </a>
+
+                    <a href="~/Letter/Index_in_progres" class="sidenav_link">
+                        <i class='fa fa-file'></i>
+                        <h3>نامه های درحال پیگیری</h3>
+                    </a>
+
+                    <a href="~/Letter/Index_end" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>جستجو نامه ها </h3>
+                    </a>
+                    <a href="~/Letter/Index_send_H_B" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>ارجاعات به بازرسی </h3>
+                    </a>
+                    <!---->
+                    <a href="~/sanction/Create" class="sidenav_link ">
+                        <i class='fa fa-book'></i>
+                        <h3>ایجاد پیگیری مصوبات</h3>
+                    </a>
+
+                    <a href="~/sanction/Index" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3> مصوبات اتمام مهلت</h3>
+                    </a>
+
+                    <a href="~/sanction/Index_in_progres" class="sidenav_link ">
+                        <i class='fa fa-file'></i>
+                        <h3> مصوبات درحال پیگیری</h3>
+                    </a>
+
+                    <a href="~/sanction/index_end" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>جستجو در مصوبات </h3>
+                    </a>
+                    <a href="~/sanction/Index_send_H_B" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>مصوبات ارجاعی به بازرسی </h3>
+                    </a>
+                    <a href="~/User/Index" class="sidenav_link">
+                        <i class='fa fa-file'></i>
+                        <h3>کاربران</h3>
+                    </a>
+
+                    <a href="~/User/Create" class="sidenav_link">
+                        <i class='fa fa-briefcase'></i>
+                        <h3>ایجاد کاربر</h3>
+                    </a>
+                    <a href="~/Letter/export" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3> گزارش گیری کلی مکاتبات</h3>
+                    </a>
+                    <a href="~/sanction/export" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3>گزارش گیری کلی مصوبات</h3>
+                    </a>
+
+                </div>
+                }
+                else if (ViewBag.user_type == "MO")
+                {
+                <div class="sidenav_header">
+                    <div class="logo_section">
+
+                        <h3>سامانه پیگیری مکاتبات</h3>
+                    </div>
+
+                    @*<a href="~/Letter/Create" class="sidenav_link ">
+                    <i class='fa fa-folder'></i>
+                    <h3>ایجاد پیگیری</h3>
+                </a>*@
+
+                    <a href="~/MO_R1/Index" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3> نامه های اتمام مهلت</h3>
+                    </a>
+
+                    <a href="~/MO_R1/Index_in_progres" class="sidenav_link ">
+                        <i class='fa fa-file'></i>
+                        <h3>نامه های درحال پیگیری</h3>
+                    </a>
+                    <a href="~/MO_R1/Index_send_H_B" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>ارجاعات به بازرسی </h3>
+                    </a>
+                    <a href="~/MO_R1/export?type=end" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>گزارش گیری نامه های خاتمه یافته </h3>
+                    </a>
+
+                    <a href="~/User/Index" class="sidenav_link">
+                        <i class='fa fa-file'></i>
+                        <h3>کاربران</h3>
+                    </a>
+
+                    <a href="~/User/Create" class="sidenav_link">
+                        <i class='fa fa-briefcase'></i>
+                        <h3>ایجاد کاربر</h3>
+                    </a>
+                    <a href="~/MO_R1/Index_sanction" class="sidenav_link">
+                        <i class='fa fa-briefcase'></i>
+                        <h3>مصوبات اتمام مهلت</h3>
+                    </a>
+
+                    <a href="~/MO_R1/Index_in_progres_sanction" class="sidenav_link ">
+                        <i class='fa fa-file'></i>
+                        <h3>مصوبات درحال پیگیری</h3>
+                    </a>
+                    <a href="~/MO_R1/Index_send_H_B_sanction" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>مصوبات ارجاعی به بازرسی </h3>
+                    </a>
+                    <a href="~/MO_R1/export_sanction?type=end" class="sidenav_link">
+                        <i class='fa fa-folder'></i>
+                        <h3>گزارش گیری مصوبات خاتمه یافته </h3>
+                    </a>
+
+                    <a href="~/Letter/export" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3>گزارش گیری کلی</h3>
+                    </a>
+                    <a href="~/Letter/export_sanction" class="sidenav_link ">
+                        <i class='fa fa-briefcase'></i>
+                        <h3> گزارش گیری کلی مصوبات</h3>
+                    </a>
+                </div>
+
+            }
+            <div class="sidenav_footer">
+                <a href="~/Login/exit" class="sidenav_link">
+                    <i class='fa fa-rocket'></i>
+                    <h3>خروج  </h3>
+                </a>
+            </div>
+
+            @*<button id="nav_collapse_btn">
+            <i class='fa fas-chevrons-left'></i>
+        </button>*@
+        </div>
+
+
+        <main>
+            <header>
+                <div class="text">
+                    <h2 style="color:black;">ایجاد کاربر </h2>
+                    <p style="color:black;"><i class='fa fa-edit'></i> کاربر</p>
+                </div>
+                <div>
+                    <button id="theme_switch">
+                        <i class='fa fa-sun'></i>
+                    </button>
+                </div>
+            </header>
+            @if (ViewBag.status == "ok")
+            {
+                @*<button id="warning" hidden>Warning</button>*@
+                <div class="alert alert-success" dir="rtl">
+                    <strong>تایید ! </strong>ساخت کاربر جدید با موفقیت انجام شد.
+                </div>
+            }
+            @if (ViewBag.status == "user_dublicate")
+            {
+                @*<button id="warning" hidden>Warning</button>*@
+                <div class="alert alert-warning" dir="rtl">
+                    <strong>اخطار ! </strong>لطفا نام کاربری دیگری انتخاب کنید این نام کاربری در سیستم موجود است.
+                </div>
+            }
+            <div class="chart_container" style="background-color: black; color:white">
+
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <form asp-action="Edit">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="form-group">
+                                <label asp-for="user_name" class="control-label"></label>
+                                <input asp-for="user_name" class="form-control" />
+                                <span asp-validation-for="user_name" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="password" class="control-label"></label>
+                                <input asp-for="password" class="form-control" />
+                                <span asp-validation-for="password" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="role" class="control-label">سطح دسترسی</label>
+                                <input asp-for="role" class="form-control" readonly/>
+                                <span asp-validation-for="token" class="text-danger"></span>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input type="submit" value="ثبت " class="btn btn-primary" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+    </div>
+
+    </main>
+
+
+    </div>
+    <!-- partial -->
+    <script src='~/be_offline/boxicons.js'></script>
+    <script src='~/be_offline/4.1.2-chart.min.js'></script>
+    <script src='~/be_offline/3.5.1-chart.min.js'></script>
+    <script src="~/dashboard/script.js"></script>
+
+</body>
+</html>

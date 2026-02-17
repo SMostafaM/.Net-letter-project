@@ -1,0 +1,37 @@
+@model daftar.Models.User
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "User";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.user_name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.user_name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.password)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.password)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.role)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.role)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

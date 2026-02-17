@@ -1,0 +1,274 @@
+
+@{
+    ViewData["Title"] = "Edit";
+    //Layout = "sanction";
+}
+@{ daftar.Models.Letter letter = ViewBag.letter;}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href='~/be_offline/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="~/be_offline/reset.min.css">
+    <link rel="stylesheet" href="~/dashboard/style.css">
+
+
+
+
+
+
+    <style>
+        .border-card {
+            border: 2px solid white;
+            padding: 10px;
+            border-radius: 25px;
+        }
+    </style>
+</head>
+<body>
+    <!-- partial:index.partial.html -->
+    <div id="page_wrapper">
+        <div id="sidenav" class="sidenav">
+            <div class="sidenav_header">
+                <div class="logo_section">
+
+                    <h3>سامانه پیگیری مکاتبات</h3>
+                </div>
+
+                <a href="~/Letter/Create" class="sidenav_link">
+                    <i class='fa fa-book'></i>
+                    <h3>ایجاد پیگیری</h3>
+                </a>
+
+                <a href="~/Letter/Index" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3> نامه های اتمام مهلت</h3>
+                </a>
+
+                <a href="~/Letter/Index_in_progres" class="sidenav_link">
+                    <i class='fa fa-file'></i>
+                    <h3>نامه های درحال پیگیری</h3>
+                </a>
+
+                <a href="~/Letter/Index_end" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>جستجو نامه ها </h3>
+                </a>
+                <a href="~/Letter/Index_send_H_B" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>ارجاعات به بازرسی </h3>
+                </a>
+                <!---->
+                <a href="~/sanction/Create" class="sidenav_link ">
+                    <i class='fa fa-book'></i>
+                    <h3>ایجاد پیگیری مصوبات</h3>
+                </a>
+
+                <a href="~/sanction/Index" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3> مصوبات اتمام مهلت</h3>
+                </a>
+
+                <a href="~/sanction/Index_in_progres" class="sidenav_link ">
+                    <i class='fa fa-file'></i>
+                    <h3> مصوبات درحال پیگیری</h3>
+                </a>
+
+                <a href="~/sanction/index_end" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>جستجو در مصوبات </h3>
+                </a>
+                <a href="~/sanction/Index_send_H_B" class="sidenav_link">
+                    <i class='fa fa-folder'></i>
+                    <h3>مصوبات ارجاعی به بازرسی </h3>
+                </a>
+                <a href="~/User/Index" class="sidenav_link">
+                    <i class='fa fa-file'></i>
+                    <h3>کاربران</h3>
+                </a>
+
+                <a href="~/User/Create" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3>ایجاد کاربر</h3>
+                </a>
+                <a href="~/Letter/export" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3> گزارش گیری کلی مکاتبات</h3>
+                </a>
+                <a href="~/sanction/export" class="sidenav_link ">
+                    <i class='fa fa-briefcase'></i>
+                    <h3>گزارش گیری کلی مصوبات</h3>
+                </a>
+
+            </div>
+
+            <div class="sidenav_footer">
+                <a href="~/Login/exit" class="sidenav_link">
+                    <i class='fa fa-rocket'></i>
+                    <h3>خروج  </h3>
+                </a>
+            </div>
+
+            @*<button id="nav_collapse_btn">
+                <i class='fa fas-chevrons-left'></i>
+            </button>*@
+        </div>
+
+
+        <main>
+            <header>
+                <div class="text">
+                    <h2 style="color:black;">ایجاد نامه </h2>
+                    <p style="color:black;">ثبت  مشخصات  جهت قرار گرقتن در کارتابل پیگیری</p>
+                </div>
+                <div>
+                    @*<button id="theme_switch">
+                        <i class='fa fa-sun'></i>
+                    </button>*@
+                </div>
+            </header>
+            @if (ViewBag.status == "ok")
+            {
+                @*<button id="warning" hidden>Warning</button>*@
+                <div class="alert alert-success" dir="rtl">
+                    <strong>تایید ! </strong>مشخصات وارد شده جهت پیگیری افزوده شد.
+                </div>
+            }
+            @if (ViewBag.status == "exist")
+            {
+                @*<button id="warning" hidden>Warning</button>*@
+                <div class="alert alert-danger" dir="rtl">
+                    <strong>خطا ! </strong>با این شماره سریال نامه ای قبلا به ثبت رسیده.
+                </div>
+            }
+
+            <div class="chart_container" style="background-color: black; color:white">
+
+
+                <div class="row">
+
+                    @*<form asp-action="Create" method="post" id="myForm">*@
+                    <form action="~/Letter/Edit" method="post" id="myForm" enctype="multipart/form-data">
+                        <div class="after-add-more">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                            <input name="Id" value="@letter.Id" hidden />
+
+                            <div style="padding:10px;" class="card bg-primary border-card ">
+                                <div dir="rtl" class="card-body ">
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label style="padding-bottom:6px" name="sender" class="control-label">ارسال کننده</label>
+                                            <input name="sender" class="form-control" value="@letter.sender"/>
+                                            <span id="sender" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+
+                                        <div class="form-group col-sm-6">
+                                            <label style="padding-bottom:6px" name="serial" class="control-label">شماره سریال نامه</label>
+                                            <input name="serial" class="form-control" value="@letter.serial" />
+                                            <span id="serial" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label style="padding-bottom:6px" name="letter_number" class="control-label">شماره وارده</label>
+                                            <input name="letter_number" class="form-control" value="@letter.letter_number" />
+                                            <span id="letter_number" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label style="padding-bottom:6px" name="title" class="control-label">عنوان</label>
+                                            <input name="title" class="form-control" value="@letter.title" />
+                                            <span id="title" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label style="padding-bottom:6px" name="date_create" class="control-label">تاریخ ایجاد نامه</label>
+                                            <input name="date_create" class="form-control pdate" type="text" id="pcal1" maxlength="10" value="@letter.date_create" />
+                                            <span id="date_create" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label style="padding-bottom:6px" name="date_send" class="control-label">تاریخ ارجاع</label>
+                                            <input name="date_send" class="form-control pdate" type="text" id="pcal2" maxlength="10" value="@letter.date_send" />
+                                            <span id="date_send" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label style="padding-bottom:6px" name="place" class="control-label">معاونت</label>
+                                            <input name="place" class="form-control" value="@letter.place" />
+                                            <span id="place" class="text-danger"></span>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label style="padding-bottom:6px" name="date_send" class="control-label">مهلت پاسخ</label>
+                                            <input type="text" name="day_reserve" class="form-control pdate" id="pcal3" value="@letter.day_reserve" />
+                                            <span id="day_reserve" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group col-sm-6">
+                                            <label style="padding-bottom:6px" name="place" class="control-label">وضعیت نامه</label>
+                                            <select class="form-control" name="letter_status" id="letter_status">
+                                                <option value=""> </option>
+                                                <option value="خاتمه"> خاتمه</option>
+                                                <option value="ارسال به بازرسی"> ارسال به بازرسی</option>
+                                                <option value="در حال پیگیری">در حال پیگیری</option>
+                                                <option value="فوری">فوری</option>
+                                                <option value="اتمام مهلت">اتمام مهلت</option>
+
+                                            </select>
+                                            <span id="place" class="text-danger"></span>
+                                        </div>
+                                        @*<div class="form-group col-md-6">
+                <label style="padding-bottom:6px" name="date_send" class="control-label">مهلت پاسخ</label>
+                <input type="text" name="day_reserve" class="form-control pdate" id="pcal3" value="@letter.day_reserve" />
+                <span id="day_reserve" class="text-danger"></span>
+            </div>*@
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group">
+                                            <label style="padding-bottom:6px" class="control-label">توضیحات </label>
+                                            <textarea name="xplain" class="form-control">@letter.xplain</textarea>
+                                            <span id="xplain" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+
+                        </div>
+                        <div style="padding-top:10px;" class="form-group">
+                            <input type="submit" value="ذخیره" class="btn btn-secondary" />
+                        </div>
+                    </form>
+
+                </div>
+
+
+            </div>
+
+    </div>
+
+    </main>
+
+
+    </div>
+    <!-- partial -->
+    <script src='~/be_offline/boxicons.js'></script>
+    <script src='~/be_offline/4.1.2-chart.min.js'></script>
+    <script src='~/be_offline/3.5.1-chart.min.js'></script>
+    <script src="~/dashboard/script.js"></script>
+
+    <script>var objCal1 = new AMIB.persianCalendar('pcal1');</script>
+    <script>var objCal1 = new AMIB.persianCalendar('pcal2');</script>
+    <script>var objCal1 = new AMIB.persianCalendar('pcal3');</script>
+
+</body>

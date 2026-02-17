@@ -1,0 +1,85 @@
+@model daftar.Models.Letter
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "Letter";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Letter</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.serial)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.serial)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.title)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.title)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.letter_number)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.letter_number)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.date_create)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.date_create)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.date_send)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.date_send)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.place)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.place)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.day_reserve)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.day_reserve)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.count_followed)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.count_followed)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.last_day_reserve)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.last_day_reserve)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.letter_status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.letter_status)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.awnser_serial)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.awnser_serial)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-outline-warning" asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
